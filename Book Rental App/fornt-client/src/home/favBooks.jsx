@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
+import BookCards from "../components/BookCards";
 
-const FavBooks = () => {
-  const [book, setBook] = useState([]);
+const BestSeller = () => {
+  const [books, setBooks] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:5000/all-books")
       .then((res) => res.json())
-      .then((data) => console.log(data), []);
-  });
+      .then((data) => setBooks(data));
+  }, []);
   return (
     <>
-      <div>Favbooks</div>
+      <div>
+        <BookCards books={books} headline="Best Seller Books" />
+      </div>
     </>
   );
 };
 
-export default FavBooks;
+export default BestSeller;

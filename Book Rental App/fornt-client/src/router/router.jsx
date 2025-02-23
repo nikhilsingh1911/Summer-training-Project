@@ -4,7 +4,7 @@ import Home from "../home/home";
 import Shop from "../shop/Shop";
 import About from "../components/About";
 import Blog from "../components/Blog";
-import SingleBook from "../home/SingleBook";
+import SingleBook from "../shop/SingleBook";
 const router = createBrowserRouter([
   {
     path: "/",

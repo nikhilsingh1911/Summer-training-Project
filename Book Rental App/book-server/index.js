@@ -7,12 +7,12 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
-// qyXUGQ4k8BoaNgAi
+// XS1X5ytegVTRBfD0
 
 //mongodb config
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const uri =
-  "mongodb+srv://book-store-app:qyXUGQ4k8BoaNgAi@cluster0.elzknoi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+  "mongodb+srv://book-store-app:XS1X5ytegVTRBfD0@cluster0.elzknoi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {

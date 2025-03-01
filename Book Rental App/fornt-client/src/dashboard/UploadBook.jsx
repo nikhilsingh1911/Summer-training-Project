@@ -1,4 +1,4 @@
-import { Button, Checkbox, Label, TextInput } from "flowbite-react";
+import { Button, Label, Textarea, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { Select } from "flowbite-react";
 const UploadBook = () => {
@@ -31,10 +31,50 @@ const UploadBook = () => {
     // console.log(e.target.value);
     setSelectedBookCategory(e.target.value);
   };
+
+  const handleBookSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+
+    const bookTitle = form.bookTitle.value;
+    const authorName = form.authorName.value;
+    const imageURL = form.imageURL.value;
+    const category = form.category.value;
+    const bookDescription = form.bookDescription.value;
+    const bookPdfUrl = form.bookPdfUrl.value;
+    const price = form.price.value;
+
+    const bookObj = {
+      bookTitle,
+      authorName,
+      imageURL,
+      category,
+      bookDescription,
+      bookPdfUrl,
+      price,
+    };
+    console.log(bookObj);
+    // Sending Data to Database
+    fetch("http://localhost:5000/upload-book", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(bookObj),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        alert("Book Uploaded Successfully!!!");
+        form.reset();
+      });
+  };
   return (
     <div className="px-4 my-12">
       <h2 className="mb-8 text-3xl font-bold">Upload A Book</h2>
-      <form className="flex lg:w-[1180px] flex-col flex-wrap gap-4">
+      <form
+        onSubmit={handleBookSubmit}
+        className="flex lg:w-[1180px] flex-col flex-wrap gap-4"
+      >
         {/* First Row */}
         <div className="flex gap-8">
           <div className="lg:w-1/2">
@@ -126,19 +166,18 @@ const UploadBook = () => {
           <div className="mb-2 block">
             <Label htmlFor="bookDescription" value="Book Despcription" />
           </div>
-          <TextInput
+          <Textarea
             id="bookDescription"
             name="bookDescription"
             type="text"
             placeholder="Max 200 words"
             required
+            rows={3}
           />
         </div>
-        <div>
-          <button className="bg-blue-600 text-white w-full p-2 text-2xl">
-            Upload
-          </button>
-        </div>
+        <Button type="submit" className="text-white bg-blue-600 text-center">
+          Submit
+        </Button>
       </form>
     </div>
   );

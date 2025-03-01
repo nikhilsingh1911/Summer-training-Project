@@ -1,4 +1,4 @@
-import { Button, Table } from "flowbite-react";
+import { Table } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 const ManageBooks = () => {
@@ -18,7 +18,6 @@ const ManageBooks = () => {
       .then((res) => res.json())
       .then((data) => {
         alert("Book is deleted Successfully!!!");
-        // setallBooks(data);
       });
   };
   return (

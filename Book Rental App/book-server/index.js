@@ -51,23 +51,16 @@ async function run() {
     // update a book data: patch or update methods
     app.patch("/book/:id", async (req, res) => {
       const id = req.params.id;
-
-      console.log(id);
-
       const updateBkData = req.body;
       const filter = { _id: new ObjectId(id) };
-      const options = { upsert: true };
-
       const updateDoc = {
         $set: {
           ...updateBkData,
         },
       };
-
+      const options = { upsert: true };
       //update
-
       const result = await booksCollect.updateOne(filter, updateDoc, options);
-
       res.send(result);
     });
 
@@ -75,8 +68,7 @@ async function run() {
     app.delete("/book/:id", async (req, res) => {
       const id = req.params.id;
       const filter = { _id: new ObjectId(id) };
-      const result = await booksCollect.deleteOne(id);
-
+      const result = await booksCollect.deleteOne(filter);
       res.send(result);
     });
 

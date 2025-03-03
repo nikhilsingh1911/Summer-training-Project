@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GiBurningBook } from "react-icons/gi";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { FaXmark } from "react-icons/fa6";
+import { AuthContext } from "../Context/AuthProvider";
 
 const Navbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isStickDay, setSticy] = useState(false);
+
+  const { user } = useContext(AuthContext);
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
@@ -66,7 +69,7 @@ const Navbar = () => {
               ))}
             </ul>
             <div className="space-x-12 hidden lg:flex item center">
-              <button>
+              <button className="ga">
                 {/* navigation bar three lines */}
                 <FaBarsStaggered className="w-5 hover:text-blue-700" />
               </button>

@@ -1,45 +1,54 @@
 import { useState, useEffect } from "react";
-import { Card } from "flowbite-react";
-import { Link } from "react-router-dom";
+import { FaCartShopping } from "react-icons/fa6";
 const Shop = () => {
   const [books, setBooks] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5001/all-books")
+    fetch("http://localhost:5000/all-books")
       .then((res) => res.json())
-      .then((data) => setBooks(data));
+      .then((data) => {
+        setBooks(data);
+        console.log(data);
+      });
   }, []);
   return (
-    <div className="mt-28 px-4 lg:px24">
+    <div className="mt-28 px-4 lg:px-24">
       <h2 className="text-5xl font-bold text-center">All Books are here</h2>
       <div className="grid gap-9 my-12 lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 grid-cols-1">
-        {books.map((book) => (
-          // <Card className="max-w-sm">
-          //   <img className="h-70 w-auto" src={book.imageURL} alt="image 1" />
-          //   <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          //     <p>{book.bookTitle}</p>
-          //   </h5>
-          //   <p className="font-normal text-gray-700 dark:text-gray-400">
-          //     <p>{book.bookDescription}</p>
-          //     <p>{book.price}</p>
-          //   </p>
-          // </Card>
-          <Card className="max-w-sm">
-            <img className="h-70 w-auto" src={book.imageURL} alt="image 1" />
-            <Link to={`book/${book._id}`}>
-              <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                {book.bookTitle}
-              </h5>
-            </Link>
-            <div className="flex items-center justify-between">
-              <span className="text-1xl font-semibold text-gray-500 dark:text-white">
-                {book.price}
-              </span>
+        {/* {books.map((book) => {
+          <div key={book._id}>
+            <h1>{book.price}</h1>;
+          </div>;
+
+          console.log(book.price);
+        })} */}
+        {books.length > 0 ? ( // ✅ Check if books exist
+          books.map((book) => (
+            <div key={book._id || book.bookTitle}>
+              {" "}
+              {/* ✅ Ensure unique key */}
+              {/* <h1>{bok.bookTitle}</h1> ✅ Display title */}
+              {/* <p>Price: {bok.price}</p> ✅ Display price */}
+              {/* {console.log("Book Price:", bok.price)} ✅ Debugging price */}
+              <div className="relative">
+                <img src={book.imageURL} alt="" />
+                <div className="absolute top-3 right-3 bg-blue-200 hover:bg-blue-300 p-2 rounded">
+                  <FaCartShopping />
+                </div>
+              </div>
+              <div>
+                <div>
+                  <h3 className="font-medium">{book.bookTitle}</h3>
+                  <p className="text-gray-500">{book.authorName}</p>
+                </div>
+                <div>
+                  <p>{book.price}</p>
+                </div>
+              </div>
             </div>
-            <button className="bg-blue-600 text-2xl font-semibold mt-8 mb-0 p-1 text-white">
-              Buy Now
-            </button>
-          </Card>
-        ))}
+          ))
+        ) : (
+          <p className="text-center text-xl">No books found!</p> // ✅ Display if no books
+        )}
       </div>
     </div>
   );

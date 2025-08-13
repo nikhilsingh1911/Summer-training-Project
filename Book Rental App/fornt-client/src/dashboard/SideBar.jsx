@@ -1,16 +1,16 @@
 import { Sidebar } from "flowbite-react";
 import { BiBuoy } from "react-icons/bi";
 import {
-  HiArrowSmRight,
+  // HiArrowSmRight,
   HiBookOpen,
   HiChartPie,
-  HiInbox,
+  // HiInbox,
   HiLogin,
   HiLogout,
   HiOutlineCloudUpload,
   HiShoppingBag,
-  HiTable,
-  HiUser,
+  // HiTable,
+  // HiUser,
   HiViewBoards,
 } from "react-icons/hi";
 
@@ -23,9 +23,6 @@ const SideBar = () => {
       </Sidebar.Logo>
       <Sidebar.Items>
         <Sidebar.ItemGroup>
-          <Sidebar.Item href="/admin/dashboard" icon={HiChartPie}>
-            Dashboard
-          </Sidebar.Item>
           <Sidebar.Item
             href="/admin/dashboard/upload"
             icon={HiOutlineCloudUpload}
@@ -34,9 +31,6 @@ const SideBar = () => {
           </Sidebar.Item>
           <Sidebar.Item href="/admin/dashboard/manage" icon={HiBookOpen}>
             Manage Books
-          </Sidebar.Item>
-          <Sidebar.Item href="#" icon={HiUser}>
-            Users
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={HiShoppingBag}>
             Products
